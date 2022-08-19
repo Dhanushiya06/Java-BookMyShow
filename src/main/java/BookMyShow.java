@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class BookMyShow {
     public static void main(String[] args) {
-
         System.out.println("WELCOME TO BOOKMYSHOW ");
         Scanner scanner = new Scanner(System.in);
         System.out.println("1. Login");
@@ -14,19 +13,19 @@ public class BookMyShow {
         if (choice == 1) {
             System.out.println("Enter your name: ");
             String name = scanner.nextLine();
+            while (true) {
+                ArrayList<User> users = new ArrayList<>();
+                User demoUser = new User("demo");
+                demoUser.setBookingHistorys(new ArrayList<>());
+                users.add(demoUser);
 
-            ArrayList<User> users = new ArrayList<>();
-            User demoUser = new User("demo");
-            demoUser.setBookingHistorys(new ArrayList<>());
-            users.add(demoUser);
-
-            ArrayList<Movie> movieArrayList = new ArrayList<>();
-            movieArrayList.add(new Movie(1, "RRR", 50, 180));
-            movieArrayList.add(new Movie(2, "SUZHAL", 30, 170));
-            movieArrayList.add(new Movie(3, "ROCKETRY", 40, 190));
-            movieArrayList.add(new Movie(4, "GULU GULU", 80, 150));
-            movieArrayList.add(new Movie(5, "PAPER ROCKET", 90, 200));
-            movieArrayList.add(new Movie(6, "VIRUMAN", 12, 250));
+                ArrayList<Movie> movieArrayList = new ArrayList<>();
+                movieArrayList.add(new Movie(1, "RRR", 50, 180));
+                movieArrayList.add(new Movie(2, "SUZHAL", 30, 170));
+                movieArrayList.add(new Movie(3, "ROCKETRY", 40, 190));
+                movieArrayList.add(new Movie(4, "GULU GULU", 80, 150));
+                movieArrayList.add(new Movie(5, "PAPER ROCKET", 90, 200));
+                movieArrayList.add(new Movie(6, "VIRUMAN", 12, 250));
 
 //            boolean isExits = false;
 //            for (int i = 0; i < users.size(); i++) {
@@ -38,16 +37,15 @@ public class BookMyShow {
 //            }
 
 
-            boolean isUserExist = users.stream().anyMatch(user -> user.getName().equals(name));
-            if (isUserExist) {
-                User loggedInUser = users.stream().filter(u -> u.getName().equals(name)).findFirst().get();
+                boolean isUserExist = users.stream().anyMatch(user -> user.getName().equals(name));
+                if (isUserExist) {
+                    User loggedInUser = users.stream().filter(u -> u.getName().equals(name)).findFirst().get();
 
-                if (loggedInUser.getBookingHistorys().size() > 0)
-                    System.out.println(loggedInUser.getBookingHistorys().get(0).getMovieName());
-                else
-                    System.out.println("error");
-
-                while (true) {
+                    if (loggedInUser.getBookingHistorys().size() > 0) {
+                        System.out.println(loggedInUser.getBookingHistorys().get(0).getMovieName());
+                    } else {
+                        System.out.println("error");
+                    }
 
                     System.out.println("1. Movies");
                     System.out.println("2. Booking History");
@@ -85,6 +83,7 @@ public class BookMyShow {
                             System.exit(0);
                         }
                     } else if (userChoice == 2) {
+
                         if (loggedInUser.getBookingHistorys() != null && loggedInUser.getBookingHistorys().size() > 0) {
                             loggedInUser.getBookingHistorys().forEach(bookingHistory -> {
                                 System.out.println("Id: " + bookingHistory.getId());
@@ -96,10 +95,10 @@ public class BookMyShow {
                         } else {
                             System.out.println("No booking made so far");
                         }
+                    } else {
+                        System.out.println("Invalid user");
                     }
                 }
-            } else {
-                System.out.println("Invalid user");
             }
         } else {
             System.exit(0);
