@@ -14,9 +14,7 @@ import java.util.Date;
 public class BookingHistory {
 
     private Date date;
-    private int id;
-    private String movieName;
+    private Movie movie;
     private int noOfTickets;
-    private int price;
 
 }

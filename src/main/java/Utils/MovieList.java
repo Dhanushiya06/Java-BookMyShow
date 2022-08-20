@@ -11,12 +11,11 @@ public class MovieList {
         return movie;
     }
 
-    public void movie() {
+    public void loadMovies() {
         movie.add(new Movie(1, "VIRUMAN", 20, 200));
         movie.add(new Movie(2, "SITA RAMAM", 30, 190));
         movie.add(new Movie(3, "SUZHAL", 45, 120));
         movie.add(new Movie(4, "ROCKETRY", 10, 140));
         movie.add(new Movie(5, "GULU GULU", 35, 100));
-
     }
 }
